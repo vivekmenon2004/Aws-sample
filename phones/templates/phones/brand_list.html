@@ -1,0 +1,22 @@
+{% extends "phones/base.html" %}
+{% block title %}Brands - PhoneStore{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold"><i class="bi bi-tags"></i> Brands</h2>
+  <a href="{% url 'brand_add' %}" class="btn btn-primary">
+    <i class="bi bi-plus-circle me-1"></i> Add Brand
+  </a>
+</div>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    {% for brand in brands %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span class="fw-semibold">{{ brand.name }}</span>
+      <span class="badge bg-primary rounded-pill">{{ brand.phones.count }} phones</span>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-muted text-center py-4">No brands yet. <a href="{% url 'brand_add' %}">Add one!</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
